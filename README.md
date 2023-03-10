@@ -33,3 +33,7 @@ The schema file for a GSD entry is currently:
 3. if there is a schema for a given namespace it SHOULD be correct
 
 Where possible we will push data bugs to upstreams to get them corrected, this has already been successful (e.g. with Mozilla and Mageia https://bugs.mageia.org/show_bug.cgi?id=30148).
+
+# Tools
+
+We want a python set of tools for local use on the files (e.g. development workstation, enrichment server, etc.) and a Cloudflare worker set for building out the APIs.
