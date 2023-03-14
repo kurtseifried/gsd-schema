@@ -6,6 +6,7 @@ The new GSD schema and the tools to support it
 ```
 {
     "gsd": {
+        "metadata": {},
         "osv_schema": {},
         "cve4_schema": {},
         "cve5_schema": {}
