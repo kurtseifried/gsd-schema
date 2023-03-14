@@ -6,14 +6,14 @@ The new GSD schema and the tools to support it
 ```
 {
     "gsd": {
-        "metadata": {},
         "osv_schema": {},
         "cve4_schema": {},
         "cve5_schema": {}
     },
     "namespaces": {
         "cve.org": {},
-        "nvd.nist.gov": {}
+        "nvd.nist.gov": {},
+        "mozilla.org": {}
     }
 }
 ```
@@ -33,6 +33,10 @@ The schema file for a GSD entry is currently:
 3. if there is a schema for a given namespace it SHOULD be correct
 
 Where possible we will push data bugs to upstreams to get them corrected, this has already been successful (e.g. with Mozilla and Mageia https://bugs.mageia.org/show_bug.cgi?id=30148).
+
+# Spacing
+
+Spacing SHOULD be 2 or 4, if the file already exists, you MUST use the existing spacing (2, 4 or none). 
 
 # Tools
 
