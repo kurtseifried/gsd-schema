@@ -7,7 +7,7 @@ The new GSD schema and the tools to support it
 {
     "gsd": {
         "metadata": {
-            "type": "vulnerability/concern",
+            "type": "vulnerability/concern/documentation",
             "exploit_code": "unknown/proof-of-concept/functional",
             "remediation": "unknown/temporary/workaround/official",
             "report_confidence": "unknown/reasonable/confirmed"
