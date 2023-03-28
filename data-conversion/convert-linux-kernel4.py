@@ -74,11 +74,8 @@ def main(json_file):
     else:
         print("GSD is not empty. Quitting.")
         sys.exit()
+    return gsd_data
 
-
-
-    with open(sys.argv[1], "w") as f:
-        json.dump(my_dict, f, indent=2)
 
 
 def process_references(json_data):
@@ -98,7 +95,10 @@ def process_references(json_data):
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        main(sys.argv[1])
+        gsd_data = main(sys.argv[1])
+        with open(sys.argv[1], "w") as f:
+            json.dump(gsd_data, f, indent=2)
+
     else:
         print("Usage: python script.py <json_file>")
 
