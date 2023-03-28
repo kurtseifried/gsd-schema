@@ -135,26 +135,28 @@ GSD:METADATA    "reporter_id": 1692786,
 
 # Prompt
 ```
-Write me a Python script that does the following:
+Write me a Python script that does the following steps in order:
 
 1. takes a command line argument of a JSON file and loads it into a variable called "json_data"
 2. check to see if json_data["GSD"]["vendor_name"] equals the string "Linux" and if json_data["GSD"]["product_name"] equals "Kernel" and if json_data["GSD"]["reporter"] equals the string "joshbressers", if they are present the script continues, if not the script exits immediately
 3. Create a new variable called "gsd_data" that is a blank python dictionary 
-4. take the data from json_data["OSV"] and load it into the gsd_data["gsd"]["osvSchema"]
+4. take the data from json_data["OSV"] and load it into the gsd_data["gsd"]["osvSchema"], then delete the json_data["OSV"] dictionary
 5. write a variable called gsd_data["gsd"]["osvSchema"]["schema_version"] with the string value "1.4.0"
-6. write json_data["GSD"]["reporter"] to gsd_data["gsd"]["metadata"]["reporter"]
-7. write json_data["GSD"]["reporter_id"] to gsd_data["gsd"]["metadata"]["reporter_id"]
+6. write json_data["GSD"]["reporter"] to gsd_data["gsd"]["metadata"]["reporter"] and delete json_data["GSD"]["reporter"] 
+7. write json_data["GSD"]["reporter_id"] to gsd_data["gsd"]["metadata"]["reporter_id"] and delete json_data["GSD"]["reporter_id"]
 8. the variable gsd_data["gsd"]["osvSchema"]["affected"] is a list of one or more items, loop through this list of items which contains a further list of dictionaries called package, severity, ranges, versions, ecosystem_specific and database_specific. If you find a dictionary called ranges check the list it contains for an item with a key called "type" that has a value of "SEMVER" and if it doesn't exist create a dictionary starting with a key called "type" and a value of "SEMVER". Then take the json_data["GSD"]["product_version"] string and process it as follows: split it into two strings, one starting with "versions from" and the second starting with "to before", if there is a version string in the first "versions from" text please write it to the dictionary as the value for a key called "introduced" and if there is a version string in the first "to before" text please write it to the dictionary as the value for a key called "fixed"
 
 9. Create a new variable called gsd_data["gsd"]["metadata"]["type"] that is the string "concern"
 10. Create a new variable called gsd_data["gsd"]["metadata"]["exploitCode"] that is the string "unknown"
 11. Create a new variable called gsd_data["gsd"]["metadata"]["remediation"] that is the string "official"
 12. Create a new variable called gsd_data["gsd"]["metadata"]["reportConfidence"] that is the string "confirmed"
-13. If json_data["GSD"]["vulnerability_type"] exists write it to gsd_data["gsd"]["metadata"]["vulnerability_type"]
-14. If json_data["GSD"]["affected_component"] exists write it to gsd_data["gsd"]["metadata"]["affected_component"]
-15. If json_data["GSD"]["attack_vector"] exists write it to gsd_data["gsd"]["metadata"]["attack_vector"]
-16. If json_data["GSD"]["impact"] exists write it to gsd_data["gsd"]["metadata"]["impact"]
-
-20. print the JSON in gsd_data with 2 spaces for indent
+13. If json_data["GSD"]["vulnerability_type"] exists write it to gsd_data["gsd"]["metadata"]["vulnerability_type"] and delete json_data["GSD"]["vulnerability_type"]
+14. If json_data["GSD"]["affected_component"] exists write it to gsd_data["gsd"]["metadata"]["affected_component"] and delete json_data["GSD"]["affected_component"]
+15. If json_data["GSD"]["attack_vector"] exists write it to gsd_data["gsd"]["metadata"]["attack_vector"] and delete json_data["GSD"]["attack_vector"]
+16. If json_data["GSD"]["impact"] exists write it to gsd_data["gsd"]["metadata"]["impact"] and delete json_data["GSD"]["impact"]
+20. print a line of "####"
+21. print JSON in json_data with 2 spaces for indent
+22. print a line of "####"
+23. print the JSON in gsd_data with 2 spaces for indent
 
 ```
