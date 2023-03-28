@@ -145,7 +145,6 @@ Write me a Python script that does the following steps in order:
 6. write json_data["GSD"]["reporter"] to gsd_data["gsd"]["metadata"]["reporter"] and delete json_data["GSD"]["reporter"] 
 7. write json_data["GSD"]["reporter_id"] to gsd_data["gsd"]["metadata"]["reporter_id"] and delete json_data["GSD"]["reporter_id"]
 8. the variable gsd_data["gsd"]["osvSchema"]["affected"] is a list of one or more items, loop through this list of items which contains a further list of dictionaries called package, severity, ranges, versions, ecosystem_specific and database_specific. If you find a dictionary called ranges check the list it contains for an item with a key called "type" that has a value of "SEMVER" and if it doesn't exist create a dictionary starting with a key called "type" and a value of "SEMVER". Then take the json_data["GSD"]["product_version"] string and process it as follows: split it into two strings, one starting with "versions from" and the second starting with "to before", if there is a version string in the first "versions from" text please write it to the dictionary as the value for a key called "introduced" and if there is a version string in the first "to before" text please write it to the dictionary as the value for a key called "fixed"
-
 9. Create a new variable called gsd_data["gsd"]["metadata"]["type"] that is the string "concern"
 10. Create a new variable called gsd_data["gsd"]["metadata"]["exploitCode"] that is the string "unknown"
 11. Create a new variable called gsd_data["gsd"]["metadata"]["remediation"] that is the string "official"
@@ -154,6 +153,13 @@ Write me a Python script that does the following steps in order:
 14. If json_data["GSD"]["affected_component"] exists write it to gsd_data["gsd"]["metadata"]["affected_component"] and delete json_data["GSD"]["affected_component"]
 15. If json_data["GSD"]["attack_vector"] exists write it to gsd_data["gsd"]["metadata"]["attack_vector"] and delete json_data["GSD"]["attack_vector"]
 16. If json_data["GSD"]["impact"] exists write it to gsd_data["gsd"]["metadata"]["impact"] and delete json_data["GSD"]["impact"]
+
+17. Check if json_data["GSD"]["vendor_name"] is the same string value as gsd_data["gsd"]["osvSchema"]["affected"][0]["package"]["ecosystem"] and if it is the same then delete json_data["GSD"]["vendor_name"], and if it is not the same, throw an error and quit
+18. Check if json_data["GSD"]["product_name"] is the same string value as gsd_data["gsd"]["osvSchema"]["affected"][0]["package"]["name"] and if it is the same then delete json_data["GSD"]["vendor_name"], and if it is not the same, throw an error and quit
+
+
+
+
 20. print a line of "####"
 21. print JSON in json_data with 2 spaces for indent
 22. print a line of "####"

@@ -56,10 +56,45 @@ def main(json_file):
     if "impact" in json_data["GSD"]:
         gsd_data["gsd"]["metadata"]["impact"] = json_data["GSD"].pop("impact")
 
-    print("####")
-    print(json.dumps(json_data, indent=2))
-    print("####")
-    print(json.dumps(gsd_data, indent=2))
+
+    del json_data["GSD"]["vendor_name"] 
+    del json_data["GSD"]["product_name"] 
+    del json_data["GSD"]["product_version"]
+    del json_data["GSD"]["credit"]
+    del json_data["GSD"]["notes"]
+    del json_data["GSD"]["description"]
+    del json_data["GSD"]["extended_references"] 
+
+    gsd_data["gsd"]["osvSchema"]["references"] = process_references(json_data)
+    del json_data["GSD"]["references"]
+    
+    # Check if "GSD" is empty, delete it if so
+    if json_data.get("GSD") == {}:
+        del json_data["GSD"]
+    else:
+        print("GSD is not empty. Quitting.")
+        sys.exit()
+
+
+
+    with open(sys.argv[1], "w") as f:
+        json.dump(my_dict, f, indent=2)
+
+
+def process_references(json_data):
+    # Step 1: Create a new list for references
+    references = []
+
+    # Step 2: Iterate through "references" in "json_data"
+    for ref in json_data["GSD"]["references"]:
+        if isinstance(ref, str) and ref.startswith("https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/"):
+            # Step 3: Create a new dictionary for the reference
+            reference = {"type": "FIX", "url": ref}
+            references.append(reference)
+
+    # Return the list of references
+    return references
+
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
